@@ -11,57 +11,115 @@
 </head>
 
 <body>
-    <div id="buttons">
+    <div class="container">
+        <h1>Animal Search</h1>
 
-    </div>
+        <!-- Movies will Get Dumped Dere -->
+        <div id="gifs-view"></div>
 
-    <div id="searchResult">
+        <!-- Rendered Buttons will get Dumped Here  -->
+        <div id="buttons-view"></div>
 
-    </div>
+        <form id="gif-form">
+            <label for="gif-input">Add an Animal</label>
+            <input type="text" id="gif-input"><br>
 
-    <form id="gif-form">
-        <label for="gif-input">Add an Animal</label>
-        <input type="text" id="gif-input"><br>
-  
-        <!-- Button triggers new movie to be added -->
-        <input id="add-gif" type="submit" value="Add an Animal">
-      </form>
+            <!-- Button triggers new gif to be added -->
+            <input id="add-gif" type="submit" value="Add an Animal">
+        </form>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script type="text/javascript">
- var gifs = ["Cat", "Dog", "Horse", "Skunk", "Kangaroo"];
-    function displayGifs() {
-       var gif = $(this).attr("data-name");
-       var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + userInput +
-            '&api_key=PWx9eFjMzUDL4R5phZYE6mFTgTJhfZb8' 
-            
-            $.ajax({
-            url: queryURL,
-            method: "GET"
-        }).done(function(response){
-           console.log(response);
-var giphyDiv = $("<div class='giphy'>");
-     
+        <script type="text/javascript">
+            var topics = ["Cat", "Dog", "Horse", "Skunk", "Kangaroo"];
 
-        })
+            function displayGifInfo() {
 
-    } 
-        
-        var userInput = $("#userInput").val();
 
-       
-    </script>
+                var userInput = $(this).attr("data-animal");
 
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-    </script>
+                var queryURL = 'https://api.giphy.com/v1/gifs/search?api_key=h6qntSQM764nzzNzAegz6KeeSRCXtGQ6&q=animal&limit=10&offset=0&rating=G&lang=en'
+
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).done(function (response) {
+                    console.log(response);
+                    //create a div for gifs
+                    var gifDiv = $("<div class='giphy'>");
+
+                    // Storing the rating data
+                    var rating = response.data.rating;
+
+                    // Creating an element to have the rating displayed
+                    var pOne = $("<p>").text("Rating: " + rating);
+
+                    // Displaying the rating
+                    gifDiv.prepend(pOne);
+
+
+
+                    // Putting the entire movie above the previous movies
+                    $("#gifs-view").prepend(gifDiv);
+                });
+
+            }
+            displayGifInfo();
+
+          /*  // Function for displaying movie data
+            function renderButtons() {
+
+                // Deleting the movies prior to adding new movies
+                // (this is necessary otherwise you will have repeat buttons)
+                $("#buttons-view").empty();
+
+                // Looping through the array of movies
+                for (var i = 0; i < topics.length; i++) {
+
+                    // Then dynamicaly generating buttons for each movie in the array
+                    // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+                    var a = $("<button>");
+                    // Adding a class of movie to our button
+                    a.addClass("giphy");
+                    // Adding a data-attribute
+                    a.attr("data-animal", topics[i]);
+                    // Providing the initial button text
+                    a.text(topics[i]);
+                    // Adding the button to the buttons-view div
+                    $("#buttons-view").append(a);
+                }
+            }
+
+            // This function handles events where a movie button is clicked
+            $("#add-gif").on("click", function (event) {
+                event.preventDefault();
+                // This line grabs the input from the textbox
+                var gif = $("#gif-input").val().trim();
+
+                // Adding movie from the textbox to our array
+                topics.push(gif);
+
+                // Calling renderButtons which handles the processing of our movie array
+                renderButtons();
+            });
+
+            // Adding a click event listener to all elements with a class of "movie"
+            $(document).on("click", ".giphy", displayGifInfo);
+
+            // Calling the renderButtons function to display the intial buttons
+            renderButtons(); */
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+        </script>
 </body>
 
 </html>
