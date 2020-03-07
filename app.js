@@ -1,4 +1,7 @@
 $(document).ready(function () {
+// only 10 gifs on the page
+// gifs are standing next to each other
+// make them move
 
 
     var topics = ["Cat", "Dog", "Horse", "Skunk", "Kangaroo"];
@@ -6,8 +9,8 @@ $(document).ready(function () {
 
 
     function displayGifInfo() {
-
-
+// Commented line would overwrite the gifs
+ //  $("#gifs-view").empty();
         var pic = $(this).attr("data-animal");
 
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
@@ -29,7 +32,7 @@ $(document).ready(function () {
                 animalDiv.addClass("box");
                 // Creating a paragraph tag with the result item's rating
                 var p = $("<p>").text("Rating: " + result[i].rating);
-
+                p.addClass("rating");
                 // Creating and storing an image tag
                 var animalImage = $("<img>");
                 // Setting the src attribute of the image to a property pulled off the result item
@@ -50,6 +53,19 @@ $(document).ready(function () {
                 // Prependng the animalDiv to the HTML page 
                 $("#gifs-view").prepend(animalDiv);
             }
+
+            $(".gif").on("click", function () {
+
+                var state = $(this).attr("data-state");
+        
+                if (state === "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+            });
         });
 
 
@@ -103,18 +119,5 @@ $(document).ready(function () {
     // Calling the renderButtons function to display the intial buttons
     renderButtons();
 
-    // Manipulating the images
-    $(".gif").on("click", function () {
-
-        var state = $(this).attr("data-state");
-
-        if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-        } else {
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-        }
-    });
 
 });

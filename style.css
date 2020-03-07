@@ -1,5 +1,10 @@
+.container{
+margin-top: 40px;
+}
+
 body {
     background-image: url("https://www.backgroundcheckadvantage.com/userfiles/com.background/image/Convention2016_slide___Source.jpg");
+height: 100%;
 
 }
 
@@ -40,4 +45,14 @@ button {
     border-radius: 20%;
     border: hidden;
     margin: 10px ;
+}
+.box{
+width: fit-content;
+height: fit-content;
+display: inline-block;
+margin: 10px 0 10px 10px;
+}
+
+.rating{
+    width: 100%;
 }
