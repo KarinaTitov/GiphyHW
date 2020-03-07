@@ -1,0 +1,43 @@
+body {
+    background-image: url("https://www.backgroundcheckadvantage.com/userfiles/com.background/image/Convention2016_slide___Source.jpg");
+
+}
+
+h1 {
+    font-size: 50px;
+    font-family: cursive;
+    margin-left: 10px;
+}
+
+button {
+    margin: 10px;
+    width: 120px;
+}
+
+form {
+    float: right;
+}
+
+p {
+    font-size: 20px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    width: 50%;
+}
+
+label {
+    font-size: 25px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+button {
+    background-color: aquamarine;
+    border-radius: 30%;
+    border: hidden;
+}
+
+#add-gif{
+    background-color: aquamarine;
+    border-radius: 20%;
+    border: hidden;
+    margin: 10px ;
+}
